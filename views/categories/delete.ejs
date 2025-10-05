@@ -1,0 +1,13 @@
+<h2>Delete Category</h2>
+
+<p>Are you sure you want to delete the category "<%= category.name %>"?</p>
+
+<% if (items.length > 0) { %>
+  <p><strong>Note:</strong> This category has <%= items.length %> item(s). 
+  After deletion, these items will no longer belong to any category.</p>
+<% } %>
+
+<form action="/categories/<%= category.id %>/delete" method="POST">
+  <button type="submit">Yes, delete</button>
+  <a href="/categories/<%= category.id %>">Cancel</a>
+</form>
