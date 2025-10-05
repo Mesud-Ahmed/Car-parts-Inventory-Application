@@ -1,0 +1,14 @@
+
+<h2><%= category.name %></h2>
+<p><%= category.description %></p>
+
+<h3>Items in this category</h3>
+<ul>
+  <% if (items.length === 0) { %>
+    <p>No items yet.</p>
+  <% } else { %>
+    <% items.forEach(item => { %>
+      <li><%= item.name %> — $<%= item.price %></li>
+    <% }) %>
+  <% } %>
+</ul>
