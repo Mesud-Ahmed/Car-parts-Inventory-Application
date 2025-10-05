@@ -1,0 +1,13 @@
+<h2><%= item.name %></h2>
+
+<p><strong>Description:</strong> <%= item.description %></p>
+<p><strong>Price:</strong> $<%= item.price %></p>
+<p><strong>Quantity in stock:</strong> <%= item.stock_quantity %></p>
+<p><strong>Category:</strong> <%= item.category_name || 'No Category' %></p>
+
+<hr>
+<a href="/items/<%= item.id %>/edit">Edit</a> |
+<form action="/items/<%= item.id %>/delete" method="POST" style="display:inline;">
+  <button type="submit" onclick="return confirm('Delete this item?')">Delete</button>
+</form> |
+<a href="/items">Back to Items</a>

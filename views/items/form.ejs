@@ -1,0 +1,36 @@
+
+<h2><%= title %></h2>
+
+<form action="<%= item.id ? '/items/' + item.id + '/edit' : '/items/create' %>" method="POST">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="<%= item.name || '' %>" required>
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <textarea name="description" id="description"><%= item.description || '' %></textarea>
+  </div>
+
+  <div>
+    <label for="price">Price:</label>
+    <input type="number" name="price" id="price" step="0.01" value="<%= item.price || '' %>" required>
+  </div>
+
+  <div>
+    <label for="quantity">Quantity:</label>
+    <input type="number" name="quantity" id="quantity" value="<%= item.stock_quantity || '' %>" required>
+  </div>
+
+  <div>
+    <label for="category_id">Category:</label>
+    <select name="category_id" id="category_id">
+      <option value="">No Category</option>
+      <% categories.forEach(cat => { %>
+        <option value="<%= cat.id %>" <%= item.category_id === cat.id ? 'selected' : '' %>><%= cat.name %></option>
+      <% }) %>
+    </select>
+  </div>
+
+  <button type="submit"><%= item.id ? 'Update' : 'Create' %></button>
+</form>

@@ -1,0 +1,13 @@
+<h2>All Items</h2>
+<a href="/items/create">+ Add New Item</a>
+
+<ul>
+  <% items.forEach(item => { %>
+    <li>
+      <a href="/items/<%= item.id %>"><%= item.name %></a>
+      <% if (item.category_name) { %> (Category: <%= item.category_name %>) <% } %>
+      | <a href="/items/<%= item.id %>/edit">Edit</a>
+      
+    </li>
+  <% }) %>
+</ul>
