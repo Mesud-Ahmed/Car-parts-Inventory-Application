@@ -10,6 +10,7 @@ const PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static('public'));
 
 app.set('view engine','ejs')
 app.set('views', path.join(__dirname,'views'))
@@ -18,5 +19,6 @@ app.set('layout', 'layout');
 
 app.use("/items", itemsRouter);
 app.use('/categories', categoryRoutes);
+app.use('/', categoryRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

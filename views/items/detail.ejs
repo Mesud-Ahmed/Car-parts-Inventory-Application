@@ -1,13 +1,21 @@
-<h2><%= item.name %></h2>
 
-<p><strong>Description:</strong> <%= item.description %></p>
-<p><strong>Price:</strong> $<%= item.price %></p>
-<p><strong>Quantity in stock:</strong> <%= item.stock_quantity %></p>
-<p><strong>Category:</strong> <%= item.category_name || 'No Category' %></p>
+<div class="detail-card">
+  <h2><%= item.name %></h2>
 
-<hr>
-<a href="/items/<%= item.id %>/edit">Edit</a> |
-<form action="/items/<%= item.id %>/delete" method="POST" style="display:inline;">
-  <button type="submit" onclick="return confirm('Delete this item?')">Delete</button>
-</form> |
-<a href="/items">Back to Items</a>
+  <p><strong>Description:</strong> <%= item.description %></p>
+  <p><strong>Price:</strong> $<%= item.price %></p>
+  <p><strong>Quantity in stock:</strong> <%= item.stock_quantity %></p>
+  <p><strong>Category:</strong> <%= item.category_name || 'No Category' %></p>
+
+  <hr>
+
+  <div class="action-buttons">
+    <a href="/items/<%= item.id %>/edit" class="button-link">✏️ Edit</a>
+
+    <form action="/items/<%= item.id %>/delete" method="POST" style="display:inline;">
+      <button type="submit" class="button" onclick="return confirm('Delete this item?')">🗑 Delete</button>
+    </form>
+
+    <a href="/items" class="button-link button-back">⬅️ Back</a>
+  </div>
+</div>

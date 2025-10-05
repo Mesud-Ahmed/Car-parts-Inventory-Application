@@ -1,18 +1,24 @@
 
-<h2><%= category.name %></h2>
-<p><%= category.description %></p>
+<div class="detail-card">
+  <h2><%= category.name %></h2>
+  <p><%= category.description %></p>
 
-<h3>Items in this category</h3>
-<ul>
+  <h3>Items in this category</h3>
   <% if (items.length === 0) { %>
     <p>No items yet.</p>
   <% } else { %>
-    <% items.forEach(item => { %>
-      <li><%= item.name %> — $<%= item.price %></li>
-    <% }) %>
+    <ul>
+      <% items.forEach(item => { %>
+        <li><%= item.name %> — $<%= item.price %></li>
+      <% }) %>
+    </ul>
   <% } %>
-</ul>
-<hr>
-<a href="/categories/<%= category.id %>/update">Edit</a> |
-<a href="/categories/<%= category.id %>/delete">Delete</a> |
-<a href="/categories">Back</a>
+
+  <hr>
+
+  <div class="action-buttons">
+    <a href="/categories/<%= category.id %>/update" class="button-link">✏️ Edit</a>
+    <a href="/categories/<%= category.id %>/delete" class="button-link" style="background-color:#dc2626;">🗑 Delete</a>
+    <a href="/categories" class="button-link button-back">⬅️ Back</a>
+  </div>
+</div>
