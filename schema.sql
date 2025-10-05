@@ -1,10 +1,4 @@
-#! /usr/bin/env node
-require('dotenv').config();
-const { Client } = require("pg");
-
-const SQL = `
-
-CREATE TABLE IF NOT EXISTS categories (
+CREATE TABLE categories (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   description TEXT,
@@ -12,8 +6,7 @@ CREATE TABLE IF NOT EXISTS categories (
   updated_at TIMESTAMP DEFAULT NOW()
 );
 
-
-CREATE TABLE IF NOT EXISTS items (
+CREATE TABLE items (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   description TEXT,
@@ -23,18 +16,3 @@ CREATE TABLE IF NOT EXISTS items (
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW()
 );
-
-`;
-
-async function main() {
-  console.log("seeding...");
-  const client = new Client({
-    connectionString: process.env.DATABASE_URL,
- });
-  await client.connect();
-  await client.query(SQL);
-  await client.end();
-  console.log("done");
-}
-
-main();
