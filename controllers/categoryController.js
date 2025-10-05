@@ -27,3 +27,51 @@ exports.detail = async (req, res) => {
     res.send('Error fetching category');
   }
 };
+
+exports.create_get = (req, res) => {
+  res.render('categories/form', { category: {}, formAction: '/categories/create' });
+};
+
+exports.create_post = async (req, res) => {
+  const { name, description } = req.body;
+  try {
+    await pool.query(
+      'INSERT INTO categories (name, description) VALUES ($1, $2)',
+      [name, description]
+    );
+    res.redirect('/categories');
+  } catch (err) {
+    console.error(err);
+    res.send('Error creating category');
+  }
+};
+
+exports.update_get = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const result = await pool.query('SELECT * FROM categories WHERE id = $1', [id]);
+    const category = result.rows[0];
+    res.render('categories/form', {
+      category,
+      formAction: `/categories/${id}/update`
+    });
+  } catch (err) {
+    console.error(err);
+    res.send('Error loading category for update');
+  }
+};
+
+exports.update_post = async (req, res) => {
+  const id = req.params.id;
+  const { name, description } = req.body;
+  try {
+    await pool.query(
+      'UPDATE categories SET name = $1, description = $2, updated_at = NOW() WHERE id = $3',
+      [name, description, id]
+    );
+    res.redirect(`/categories/${id}`);
+  } catch (err) {
+    console.error(err);
+    res.send('Error updating category');
+  }
+};

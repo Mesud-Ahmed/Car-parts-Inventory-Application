@@ -1,10 +1,11 @@
 
 <h2>All Categories</h2>
-
+<a href="/categories/create">+ Add New Category</a>
 <ul>
   <% categories.forEach(cat => { %>
     <li>
       <a href="/categories/<%= cat.id %>"><%= cat.name %></a>
+      | <a href="/categories/<%= cat.id %>/update">Edit</a>
     </li>
   <% }) %>
 </ul>
